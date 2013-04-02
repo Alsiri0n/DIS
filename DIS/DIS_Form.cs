@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,23 +10,25 @@ namespace DIS
 {
     public partial class DIS : Form
     {
-        string dirpath;
-        string filepath;
-        string[] sa;
-        const string waitAddressText = "Ожидаем ввода адреса.";
-        const string loadingFileText = "Загружаем файлы...";
-        const string allImageDownloaded = "Все изображения загружены.";
-        const string sourceText = "/src/";
-        const string dirDelimeter = "\\";
-        const string htmlTagNameText = "span";
-        const string htmlClass = "classname";
-        const string htmlAttribute = "filesize";
-        const char delimeterHtmlAddress = '/';
-        const string entrance2chFirst = "http://2ch.hk/";
-        const string entrance2chSecond = ".html";
-        private IntPtr nextClipboardViewer;
+        private const string waitAddressText = "Ожидаем ввода адреса.";
+        private const string loadingFileText = "Загружаем файлы...";
+        private const string allImageDownloaded = "Все изображения загружены.";
+        private const string sourceText = "/src/";
+        private const string dirDelimeter = "\\";
+        private const string htmlTagNameText = "span";
+        private const string htmlClass = "classname";
+        private const string htmlAttribute = "filesize";
+        private const char delimeterHtmlAddress = '/';
+        private const string entrance2chFirst = "http://2ch.hk/";
+        private const string entrance2chSecond = ".html";
         private const int WM_DRAWCLIPBOARD = 0x0308;
         private const int WM_CHANGECBCHAIN = 0x030D;
+        
+        private string dirpath;
+        private string filepath;
+        private string[] sa;
+
+        private IntPtr nextClipboardViewer;
 
         public DIS()
         {
@@ -37,7 +36,6 @@ namespace DIS
             webBrowser1.ScriptErrorsSuppressed = true;
             toolStripStatusLabel1.Text = waitAddressText;
             WindowState = FormWindowState.Minimized;
-
         }
 
         private void DIS_Load(object sender, EventArgs e)
@@ -59,7 +57,6 @@ namespace DIS
                 sa = txBox_url.Text.Substring(7).Split(delimeterHtmlAddress);
             }
         }
-
 
         private void WebBrowser_DocumnetCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -216,18 +213,13 @@ namespace DIS
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Можно скачать с github", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("https://github.com/IgnatievN/DIS/", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 downloadImage();
-        }
-
-        private void toTrayToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
