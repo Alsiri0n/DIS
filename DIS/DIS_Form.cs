@@ -170,14 +170,14 @@ namespace DIS
 
         private void ClipboardChanged()
         {
-            if (Clipboard.ContainsText() && 
-                Clipboard.GetText().Substring(0, entrance2chFirst.Length) == entrance2chFirst && 
-                Clipboard.GetText().Substring(Clipboard.GetText().Length-entrance2chSecond.Length,entrance2chSecond.Length) == entrance2chSecond)
+            if (Clipboard.ContainsText() && Clipboard.GetText().Length>14 &&
+                Clipboard.GetText().Substring(0, entrance2chFirst.Length) == entrance2chFirst &&
+                Clipboard.GetText().Substring(Clipboard.GetText().Length - entrance2chSecond.Length, entrance2chSecond.Length) == entrance2chSecond)
             {
                 txBox_url.Text = Clipboard.GetText();
 
                 if (FormWindowState.Minimized == WindowState)
-                notifyIcon1.ShowBalloonTip(300, "Уведомление","Скачать?",ToolTipIcon.None);
+                    notifyIcon1.ShowBalloonTip(300, "Уведомление", "Скачать?", ToolTipIcon.None);
             }
         }
 
